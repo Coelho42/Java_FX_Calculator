@@ -11,6 +11,9 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import sun.rmi.server.DeserializationChecker;
+
+import java.io.Serializable;
 
 public class Main extends Application {
 
@@ -18,6 +21,7 @@ public class Main extends Application {
 
     String parcela1;
     String operacao;
+    String resultado;
 
     //endregion
 
@@ -672,10 +676,19 @@ public class Main extends Application {
 
             // String fileAndLocation = "C:\\Users\\a50445\\Desktop\\Valores.bin\\";
             String fileAndLocation = "C:\\Users\\newma\\Desktop\\Valores.bin\\";
-            //Serialization Serializar = (fileAndLocation, );
+            Gravar.setOnAction(e -> {
+                Serialization.Serializar(fileAndLocation, resultado);
+                AlertBox.Show("Resultado:", "Serializado com sucesso");
+            });
 
             //endregion
+
             //region Btn Ler
+
+            Ler.setOnAction(e -> {
+                //resultado = (Serialization) Desserializar(fileAndLocation);;
+                AlertBox.Show("Leitura:", "Ficheiro lido com sucesso");
+            });
 
             //endregion
 
