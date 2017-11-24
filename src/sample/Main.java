@@ -11,9 +11,6 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import sun.rmi.server.DeserializationChecker;
-
-import java.io.Serializable;
 
 public class Main extends Application {
 
@@ -21,21 +18,18 @@ public class Main extends Application {
 
     String parcela1;
     String operacao;
-    String resultado;
+    Double resultado;
 
     //endregion
 
-    //region Btn Scene
+    //region Display
+    TextField display = new TextField();
+    TextField display2 = new TextField();
+    //endregion
 
-    Button Basica = new Button ("Básica");
-    Button Cientifica = new Button ("Ciêntifica");
-    Button Gravar = new Button("Gravar");
-    Button Ler = new Button("Ler");
-    Button acercaDe = new Button ("Acerca De");
-    Button Gravar2 = new Button("Gravar");
-    Button Ler2 = new Button("Ler");
-    Button acercaDe2 = new Button ("Acerca De");
-
+    //region Localização da File
+    String fileAndLocation = "C:\\Users\\a50445\\Desktop\\Valores.bin\\";
+    //String fileAndLocation = "C:\\Users\\newma\\Desktop\\Valores.bin\\";
     //endregion
 
     public static void main(String[] args) {
@@ -45,13 +39,40 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
+        //region Btn Scene
+
+        Button Basica = new Button ("Básica");
+        Button Cientifica = new Button ("Ciêntifica");
+        Button Gravar = new Button("Gravar");
+        Button Ler = new Button("Ler");
+        Button acercaDe = new Button ("Acerca De");
+        Button Gravar2 = new Button("Gravar");
+        Button Ler2 = new Button("Ler");
+        Button acercaDe2 = new Button ("Acerca De");
+
+        Basica.setPrefWidth(75);
+        Cientifica.setPrefWidth(75);
+        Gravar.setPrefWidth(75);
+        Ler.setPrefWidth(75);
+        acercaDe.setPrefWidth(75);
+        Gravar2.setPrefWidth(75);
+        Ler2.setPrefWidth(75);
+        acercaDe2.setPrefWidth(75);
+
+        Basica.setPrefHeight(35);
+        Cientifica.setPrefHeight(35);
+        Gravar.setPrefHeight(35);
+        Ler.setPrefHeight(35);
+        acercaDe.setPrefHeight(35);
+        Gravar2.setPrefHeight(35);
+        Ler2.setPrefHeight(35);
+        acercaDe2.setPrefHeight(35);
+
+        //endregion
+
         //region Calculadora Básica
 
         try {
-
-            //region Display
-            TextField display = new TextField();
-            //endregion
 
             //region BtnNum
             Button num0 = new Button("0");
@@ -198,7 +219,7 @@ public class Main extends Application {
                         //Converte para doubles as strings parcela1 e display e soma
                         double valor1 = Double.parseDouble(parcela1);
                         double valor2 = Double.parseDouble(display.getText());
-                        double resultado = valor1 + valor2;
+                        resultado = valor1 + valor2;
 
                         //Coloca o display e o resultado convertido para string
                         String total = String.valueOf(resultado);
@@ -211,7 +232,7 @@ public class Main extends Application {
                         //Converte para doubles as strings parcela1 e display e soma
                         double valor1 = Double.parseDouble(parcela1);
                         double valor2 = Double.parseDouble(display.getText());
-                        double resultado = valor1 - valor2;
+                        resultado = valor1 - valor2;
 
                         //Coloca o display e o resultado convertido para string
                         String total = String.valueOf(resultado);
@@ -225,7 +246,7 @@ public class Main extends Application {
                         //Converte para doubles as strings parcela1 e display e soma
                         double valor1 = Double.parseDouble(parcela1);
                         double valor2 = Double.parseDouble(display.getText());
-                        double resultado = valor1 * valor2;
+                        resultado = valor1 * valor2;
 
                         //Coloca o display e o resultado convertido para string
                         String total = String.valueOf(resultado);
@@ -241,7 +262,7 @@ public class Main extends Application {
                             //Converte para doubles as strings parcela1 e display e soma
                             double valor1 = Double.parseDouble(parcela1);
                             double valor2 = Double.parseDouble(display.getText());
-                            double resultado = valor1 / valor2;
+                            resultado = valor1 / valor2;
 
                             //Coloca o display e o resultado convertido para string
                             String total = String.valueOf(resultado);
@@ -311,10 +332,6 @@ public class Main extends Application {
         //region Calculadora Ciêntifica
 
         try {
-
-            //region Display
-            TextField display = new TextField();
-            //endregion
 
             //region BtnNum
             Button num0 = new Button("0");
@@ -391,75 +408,75 @@ public class Main extends Application {
             //region Eventos
 
             num0.setOnAction(e -> {
-                display.setText(display.getText() + "0");
+                display2.setText(display2.getText() + "0");
             });
             num1.setOnAction(e -> {
-                display.setText(display.getText() + "1");
+                display2.setText(display2.getText() + "1");
             });
             num2.setOnAction(e -> {
-                display.setText(display.getText() + "2");
+                display2.setText(display2.getText() + "2");
             });
             num3.setOnAction(e -> {
-                display.setText(display.getText() + "3");
+                display2.setText(display2.getText() + "3");
             });
             num4.setOnAction(e -> {
-                display.setText(display.getText() + "4");
+                display2.setText(display2.getText() + "4");
             });
             num5.setOnAction(e -> {
-                display.setText(display.getText() + "5");
+                display2.setText(display2.getText() + "5");
             });
             num6.setOnAction(e -> {
-                display.setText(display.getText() + "6");
+                display2.setText(display2.getText() + "6");
             });
             num7.setOnAction(e -> {
-                display.setText(display.getText() + "7");
+                display2.setText(display2.getText() + "7");
             });
             num8.setOnAction(e -> {
-                display.setText(display.getText() + "8");
+                display2.setText(display2.getText() + "8");
             });
             num9.setOnAction(e -> {
-                display.setText(display.getText() + "9");
+                display2.setText(display2.getText() + "9");
             });
 
             opeMais.setOnAction(e -> {
-                if (display.getText().equals("")) {
-                    AlertBox.Show("Erro", "Nao Existem Numeros No Display Para serem Operados");      //Mensagem a dizer ao user que nao existem numeros no display
+                if (display2.getText().equals("")) {
+                    AlertBox.Show("Erro", "Nao Existem Numeros No display2 Para serem Operados");      //Mensagem a dizer ao user que nao existem numeros no display2
                 } else {
-                    parcela1 = display.getText();           //Valor do display vai para a variavel parcela1 e fica em memoria
-                    display.setText("");                    //Limpa o display
+                    parcela1 = display2.getText();           //Valor do display2 vai para a variavel parcela1 e fica em memoria
+                    display2.setText("");                    //Limpa o display2
                     operacao = "+";                         //Executa a operaçao
                 }
 
             });
 
             opeMenos.setOnAction(e -> {
-                if (display.getText().equals("")) {
-                    AlertBox.Show("Erro", "Nao Existem Numeros No Display Para serem Operados");      //Mensagem a dizer ao user que nao existem numeros no display
+                if (display2.getText().equals("")) {
+                    AlertBox.Show("Erro", "Nao Existem Numeros No display2 Para serem Operados");      //Mensagem a dizer ao user que nao existem numeros no display2
                 } else {
-                    parcela1 = display.getText();           //Valor do display vai para a variavel parcela1 e fica em memoria
-                    display.setText("");                    //Limpa o display
+                    parcela1 = display2.getText();           //Valor do display2 vai para a variavel parcela1 e fica em memoria
+                    display2.setText("");                    //Limpa o display2
                     operacao = "-";                         //Executa a operaçao
                 }
 
             });
 
             opeMultiplicar.setOnAction(e -> {
-                if (display.getText().equals("")) {
-                    AlertBox.Show("Erro", "Nao Existem Numeros No Display Para serem Operados");      //Mensagem a dizer ao user que nao existem numeros no display
+                if (display2.getText().equals("")) {
+                    AlertBox.Show("Erro", "Nao Existem Numeros No display2 Para serem Operados");      //Mensagem a dizer ao user que nao existem numeros no display2
                 } else {
-                    parcela1 = display.getText();           //Valor do display vai para a variavel parcela1 e fica em memoria
-                    display.setText("");                    //Limpa o display
+                    parcela1 = display2.getText();           //Valor do display2 vai para a variavel parcela1 e fica em memoria
+                    display2.setText("");                    //Limpa o display2
                     operacao = "*";                         //Executa a operaçao
                 }
 
             });
 
             opeDividir.setOnAction(e -> {
-                if (display.getText().equals("")) {
-                    AlertBox.Show("Erro", "Nao Existem Numeros No Display Para serem Operados");      //Mensagem a dizer ao user que nao existem numeros no display
+                if (display2.getText().equals("")) {
+                    AlertBox.Show("Erro", "Nao Existem Numeros No display2 Para serem Operados");      //Mensagem a dizer ao user que nao existem numeros no display2
                 } else {
-                    parcela1 = display.getText();           //Valor do display vai para a variavel parcela1 e fica em memoria
-                    display.setText("");                    //Limpa o display
+                    parcela1 = display2.getText();           //Valor do display2 vai para a variavel parcela1 e fica em memoria
+                    display2.setText("");                    //Limpa o display2
                     operacao = "/";                         //Executa a operaçao
                 }
 
@@ -467,52 +484,52 @@ public class Main extends Application {
 
             clear.setOnAction(e -> {
                 {
-                    parcela1 = "";           //Valor do display vai para a variavel parcela1 e fica em memoria
-                    display.setText("");                    //Limpa o display
+                    parcela1 = "";           //Valor do display2 vai para a variavel parcela1 e fica em memoria
+                    display2.setText("");                    //Limpa o display2
                     operacao = "";                         //Executa a operaçao
                 }
 
             });
 
             raiz.setOnAction(e -> {
-                if (display.getText().equals("")) {
-                    AlertBox.Show("Erro", "Nao Existem Numeros No Display Para serem Operados");      //Mensagem a dizer ao user que nao existem numeros no display
+                if (display2.getText().equals("")) {
+                    AlertBox.Show("Erro", "Nao Existem Numeros No display2 Para serem Operados");      //Mensagem a dizer ao user que nao existem numeros no display2
                 } else {
-                    parcela1 = display.getText();           //Valor do display vai para a variavel parcela1 e fica em memoria
-                    display.setText("");                    //Limpa o display
+                    parcela1 = display2.getText();           //Valor do display2 vai para a variavel parcela1 e fica em memoria
+                    display2.setText("");                    //Limpa o display2
                     operacao = "√";                         //Executa a operaçao
                 }
 
             });
 
             quadrado.setOnAction(e -> {
-                if (display.getText().equals("")) {
-                    AlertBox.Show("Erro", "Nao Existem Numeros No Display Para serem Operados");      //Mensagem a dizer ao user que nao existem numeros no display
+                if (display2.getText().equals("")) {
+                    AlertBox.Show("Erro", "Nao Existem Numeros No display2 Para serem Operados");      //Mensagem a dizer ao user que nao existem numeros no display2
                 } else {
-                    parcela1 = display.getText();           //Valor do display vai para a variavel parcela1 e fica em memoria
-                    display.setText("");                    //Limpa o display
+                    parcela1 = display2.getText();           //Valor do display2 vai para a variavel parcela1 e fica em memoria
+                    display2.setText("");                    //Limpa o display2
                     operacao = "x2";                        //Executa a operaçao
                 }
 
             });
 
             cubo.setOnAction(e -> {
-                if (display.getText().equals("")) {
-                    AlertBox.Show("Erro", "Nao Existem Numeros No Display Para serem Operados");      //Mensagem a dizer ao user que nao existem numeros no display
+                if (display2.getText().equals("")) {
+                    AlertBox.Show("Erro", "Nao Existem Numeros No display2 Para serem Operados");      //Mensagem a dizer ao user que nao existem numeros no display2
                 } else {
-                    parcela1 = display.getText();           //Valor do display vai para a variavel parcela1 e fica em memoria
-                    display.setText("");                    //Limpa o display
+                    parcela1 = display2.getText();           //Valor do display2 vai para a variavel parcela1 e fica em memoria
+                    display2.setText("");                    //Limpa o display2
                     operacao = "x3";                        //Executa a operaçao
                 }
 
             });
 
             elevado.setOnAction(e -> {
-                if (display.getText().equals("")) {
-                    AlertBox.Show("Erro", "Nao Existem Numeros No Display Para serem Operados");      //Mensagem a dizer ao user que nao existem numeros no display
+                if (display2.getText().equals("")) {
+                    AlertBox.Show("Erro", "Nao Existem Numeros No display2 Para serem Operados");      //Mensagem a dizer ao user que nao existem numeros no display2
                 } else {
-                    parcela1 = display.getText();           //Valor do display vai para a variavel parcela1 e fica em memoria
-                    display.setText("");                    //Limpa o display
+                    parcela1 = display2.getText();           //Valor do display2 vai para a variavel parcela1 e fica em memoria
+                    display2.setText("");                    //Limpa o display2
                     operacao = "^";                         //Executa a operaçao
                 }
 
@@ -520,45 +537,45 @@ public class Main extends Application {
 
             opeIgual.setOnAction(e -> {
 
-                if (operacao != "" && parcela1 != "" && display.getText() != "") {
+                if (operacao != "" && parcela1 != "" && display2.getText() != "") {
 
                     //se opraçao for +
                     if (operacao == "+") {
-                        //Converte para doubles as strings parcela1 e display e soma
+                        //Converte para doubles as strings parcela1 e display2 e soma
                         double valor1 = Double.parseDouble(parcela1);
-                        double valor2 = Double.parseDouble(display.getText());
-                        double resultado = valor1 + valor2;
+                        double valor2 = Double.parseDouble(display2.getText());
+                        resultado = valor1 + valor2;
 
-                        //Coloca o display e o resultado convertido para string
+                        //Coloca o display2 e o resultado convertido para string
                         String total = String.valueOf(resultado);
-                        display.setText(total);
+                        display2.setText(total);
                         operacao = "";
                     }
 
                     //se opraçao for -
                     if (operacao == "-") {
-                        //Converte para doubles as strings parcela1 e display e soma
+                        //Converte para doubles as strings parcela1 e display2 e soma
                         double valor1 = Double.parseDouble(parcela1);
-                        double valor2 = Double.parseDouble(display.getText());
-                        double resultado = valor1 - valor2;
+                        double valor2 = Double.parseDouble(display2.getText());
+                        resultado = valor1 - valor2;
 
-                        //Coloca o display e o resultado convertido para string
+                        //Coloca o display2 e o resultado convertido para string
                         String total = String.valueOf(resultado);
-                        display.setText(total);
+                        display2.setText(total);
                         operacao = "";
 
                     }
 
                     //se opraçao for *
                     if (operacao == "*") {
-                        //Converte para doubles as strings parcela1 e display e soma
+                        //Converte para doubles as strings parcela1 e display2 e soma
                         double valor1 = Double.parseDouble(parcela1);
-                        double valor2 = Double.parseDouble(display.getText());
-                        double resultado = valor1 * valor2;
+                        double valor2 = Double.parseDouble(display2.getText());
+                        resultado = valor1 * valor2;
 
-                        //Coloca o display e o resultado convertido para string
+                        //Coloca o display2 e o resultado convertido para string
                         String total = String.valueOf(resultado);
-                        display.setText(total);
+                        display2.setText(total);
                         operacao = "";
 
                     }
@@ -566,15 +583,15 @@ public class Main extends Application {
                     //se opraçao for /
                     if (operacao == "/") {
 
-                        if (!display.getText().equals("0")) {
-                            //Converte para doubles as strings parcela1 e display e soma
+                        if (!display2.getText().equals("0")) {
+                            //Converte para doubles as strings parcela1 e display2 e soma
                             double valor1 = Double.parseDouble(parcela1);
-                            double valor2 = Double.parseDouble(display.getText());
-                            double resultado = valor1 / valor2;
+                            double valor2 = Double.parseDouble(display2.getText());
+                            resultado = valor1 / valor2;
 
-                            //Coloca o display e o resultado convertido para string
+                            //Coloca o display2 e o resultado convertido para string
                             String total = String.valueOf(resultado);
-                            display.setText(total);
+                            display2.setText(total);
                             operacao = "";
 
                         } else {
@@ -586,47 +603,47 @@ public class Main extends Application {
                 }
 
                 if (operacao == "√") {
-                    //Converte para doubles as strings parcela1 e display e soma
+                    //Converte para doubles as strings parcela1 e display2 e soma
                     double valor1 = Double.parseDouble(parcela1);
-                    double resultado = Math.sqrt(valor1);
+                    resultado = Math.sqrt(valor1);
 
-                    //Coloca o display e o resultado convertido para string
+                    //Coloca o display2 e o resultado convertido para string
                     String total = String.valueOf(resultado);
-                    display.setText(total);
+                    display2.setText(total);
                     operacao = "";
                 }
 
                 if (operacao == "x2") {
-                    //Converte para doubles as strings parcela1 e display e soma
+                    //Converte para doubles as strings parcela1 e display2 e soma
                     double valor1 = Double.parseDouble(parcela1);
-                    double resultado = valor1 * valor1;
+                    resultado = valor1 * valor1;
 
-                    //Coloca o display e o resultado convertido para string
+                    //Coloca o display2 e o resultado convertido para string
                     String total = String.valueOf(resultado);
-                    display.setText(total);
+                    display2.setText(total);
                     operacao = "";
                 }
 
                 if (operacao == "x3") {
-                    //Converte para doubles as strings parcela1 e display e soma
+                    //Converte para doubles as strings parcela1 e display2 e soma
                     double valor1 = Double.parseDouble(parcela1);
-                    double resultado = valor1 * valor1 * valor1;
+                    resultado = valor1 * valor1 * valor1;
 
-                    //Coloca o display e o resultado convertido para string
+                    //Coloca o display2 e o resultado convertido para string
                     String total = String.valueOf(resultado);
-                    display.setText(total);
+                    display2.setText(total);
                     operacao = "";
                 }
 
                 if (operacao == "^") {
-                    //Converte para doubles as strings parcela1 e display e soma
+                    //Converte para doubles as strings parcela1 e display2 e soma
                     double valor1 = Double.parseDouble(parcela1);
-                    double valor2 = Double.parseDouble(display.getText());
-                    double resultado = Math.pow(valor1, valor2);
+                    double valor2 = Double.parseDouble(display2.getText());
+                    resultado = Math.pow(valor1, valor2);
 
-                    //Coloca o display e o resultado convertido para string
+                    //Coloca o display2 e o resultado convertido para string
                     String total = String.valueOf(resultado);
-                    display.setText(total);
+                    display2.setText(total);
                     operacao = "";
                 }
             });
@@ -642,11 +659,11 @@ public class Main extends Application {
             HBox numero0MaisEMenosEIgualEElevado = new HBox(10);
             BorderPane borderPane = new BorderPane();
 
-            display.setAlignment(Pos.CENTER_RIGHT);
-            display.setPrefHeight(60);
-            display.setFont((Font.font(20)));
+            display2.setAlignment(Pos.CENTER_RIGHT);
+            display2.setPrefHeight(60);
+            display2.setFont((Font.font(20)));
 
-            borderPane.setTop(display);
+            borderPane.setTop(display2);
             borderPane.setCenter(todosOsButoes);
 
             StackPane layoutRoot = new StackPane();
@@ -672,36 +689,52 @@ public class Main extends Application {
 
             //endregion
 
-            //region Btn Gravar
-
-            // String fileAndLocation = "C:\\Users\\a50445\\Desktop\\Valores.bin\\";
-            String fileAndLocation = "C:\\Users\\newma\\Desktop\\Valores.bin\\";
-            Gravar.setOnAction(e -> {
-                Serialization.Serializar(fileAndLocation, resultado);
-                AlertBox.Show("Resultado:", "Serializado com sucesso");
-            });
-
-            //endregion
-
-            //region Btn Ler
-
-            Ler.setOnAction(e -> {
-                //resultado = (Serialization) Desserializar(fileAndLocation);;
-                AlertBox.Show("Leitura:", "Ficheiro lido com sucesso");
-            });
-
-            //endregion
-
-            //region Btn Acerca De
-            acercaDe.setOnAction(e -> AlertBox.Show("Sobre mim", "Olá eu sou o Gonçalo Coelho Nº7 do 2ºGI"));
-            //endregion
-
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         //endregion
 
+        //region Gravar e Ler
+
+        //region Btn Gravar e Ler Básica
+
+        Gravar.setOnAction(e -> {
+            Serialization.Serializar(fileAndLocation, resultado);
+            AlertBox.Show("Resultado:", "Serializado com sucesso");
+        });
+
+        Ler.setOnAction(e -> {
+            resultado = (Double) Serialization.Desserializar(fileAndLocation);
+            display.setText(String.valueOf(resultado));
+        });
+
+        //endregion
+
+        //region Btn Gravar e Ler Ciêntifica
+
+        //String fileAndLocation = "C:\\Users\\newma\\Desktop\\Valores.bin\\";
+        Gravar2.setOnAction(e -> {
+            Serialization.Serializar(fileAndLocation, resultado);
+            AlertBox.Show("Resultado:", "Serializado com sucesso");
+        });
+
+        Ler2.setOnAction(e -> {
+            resultado = (Double) Serialization.Desserializar(fileAndLocation);
+            display2.setText(String.valueOf(resultado));
+        });
+
+        //endregion
+
+        //region Btn Acerca De Básica
+        acercaDe.setOnAction(e -> AlertBox.Show("Sobre mim", "Olá eu sou o Gonçalo Coelho Nº7 do 2ºGI"));
+        //endregion
+
+        //region Btn Acerca De Ciêntifica
+        acercaDe2.setOnAction(e -> AlertBox.Show("Sobre mim", "Olá eu sou o Gonçalo Coelho Nº7 do 2ºGI"));
+        //endregion
+
+        //endregion
     }
 }
 
