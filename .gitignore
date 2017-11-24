@@ -28,3 +28,6 @@ hs_err_pid*
 # IntelliJ files to ignore
 .idea
 *.iml
+
+# A seguinte file deixa passar ficheiros do tipo JAR
+!*utils.jar
