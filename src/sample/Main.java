@@ -12,6 +12,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
+import java.io.File;
+
 public class Main extends Application {
 
     //region Declarações
@@ -704,9 +706,14 @@ public class Main extends Application {
             AlertBox.Show("Resultado:", "Serializado com sucesso");
         });
 
-        Ler.setOnAction(e -> {
-            resultado = (Double) Serialization.Desserializar(fileAndLocation);
-            display.setText(String.valueOf(resultado));
+        Ler.setOnAction(e ->{
+            File fileAndLocationFile = new File(fileAndLocation);
+            if(fileAndLocationFile.exists()) {
+                resultado = (Double) Serialization.Desserializar(fileAndLocation);
+                display.setText(String.valueOf(resultado));
+            } else{
+                AlertBox.Show("Aviso", "Não existe nada para ser lido!");
+            }
         });
 
         //endregion
@@ -719,9 +726,14 @@ public class Main extends Application {
             AlertBox.Show("Resultado:", "Serializado com sucesso");
         });
 
-        Ler2.setOnAction(e -> {
-            resultado = (Double) Serialization.Desserializar(fileAndLocation);
-            display2.setText(String.valueOf(resultado));
+        Ler2.setOnAction(e ->{
+            File fileAndLocationFile = new File(fileAndLocation);
+            if(fileAndLocationFile.exists()) {
+                resultado = (Double) Serialization.Desserializar(fileAndLocation);
+                display2.setText(String.valueOf(resultado));
+            } else{
+                AlertBox.Show("Aviso", "Não existe nada para ser lido!");
+            }
         });
 
         //endregion
